@@ -13,23 +13,26 @@
  * -D ARDUINO_USB_MODE
  * -D ARDUINO_USB_CDC_ON_BOOT
  */
-#ifndef LOLIN_C3_MINI_H
+#ifndef ESP_MAPPING_LOLIN_C3_MINI_H
+#define ESP_MAPPING_LOLIN_C3_MINI_H
+#if defined(CONFIG_IDF_TARGET_ESP32C3) || defined(ESP32C3)
 
-#if defined(ESP32) && (defined(CONFIG_IDF_TARGET_ESP32C3) || defined(ESP32C3))
+// @formatter:off
 
 #define  MP_MCU_NAME "ESP832C3"
 
 ///////////////////////////////////////////////     PINOUT   ///////////////////////////////////////////////
 //////////////////////////////////////////   C0051 C0052 C0053   ////////////////////////////////////////////
-/*EN*/                 /**🔺 EN                            **/ const int MP_TX = 21; /**🟡 ⚠️TX build_unflags       **/
-const int MP_A0  = 0;  /**🟧 Digital In/Out A1-0           **/ const int MP_RX = 20; /**🟡 ⚠️RX build_unflags       **/
-const int MP_D0  = 1;  /**🟧 Digital In/Out A1-1           **/ const int MP_D1 = 18; /**🟧 Digital In/Out           **/
-const int MP_D5  = 2;  /**🟧 Digital In/Out A1-2           **/ const int MP_D2 = 10; /**🟧 Digital In/Out           **/
-const int MP_D6  = 3;  /**🟧 Digital In/Out A1-3           **/ const int MP_D3 = 7;  /**🟧 Digital In/Out SS(spi)   **/
-const int MP_D7  = 4;  /**🟧 Digital In/Out A1-4 SCK(spi)  **/ const int MP_D4 = 6;  /**🟧 Digital In/Out MOSI(spi) **/
-const int MP_D8  = 5;  /**🟧 Digital In/Out A2-0 MISO(spi) **/            /*⚡️GND*/
-/*⚡️3.3V*/              /************************************/             /*⚡️5V*/
+/*EN*/                     /**🔺 EN                            **/ constexpr int MP_TX = 21; /**🟡 ⚠️TX build_unflags       **/
+constexpr int MP_A0  = 0;  /**🟧 Digital In/Out A1-0           **/ constexpr int MP_RX = 20; /**🟡 ⚠️RX build_unflags       **/
+constexpr int MP_D0  = 1;  /**🟧 Digital In/Out A1-1           **/ constexpr int MP_D1 = 18; /**🟧 Digital In/Out           **/
+constexpr int MP_D5  = 2;  /**🟧 Digital In/Out A1-2           **/ constexpr int MP_D2 = 10; /**🟧 Digital In/Out           **/
+constexpr int MP_D6  = 3;  /**🟧 Digital In/Out A1-3           **/ constexpr int MP_D3 = 7;  /**🟧 Digital In/Out SS(spi)   **/
+constexpr int MP_D7  = 4;  /**🟧 Digital In/Out A1-4 SCK(spi)  **/ constexpr int MP_D4 = 6;  /**🟧 Digital In/Out MOSI(spi) **/
+constexpr int MP_D8  = 5;  /**🟧 Digital In/Out A2-0 MISO(spi) **/          /* ⚡️GND */
+/* ⚡️3.3V */               /*************************************/          /* ⚡️5V */
 
-#endif // ESP832C3
+// @formatter:on
 
-#endif // LOLIN_C3_MINI_H
+#endif
+#endif

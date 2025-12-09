@@ -71,7 +71,7 @@ constexpr int MP_ADC_MIC_DIN_C0           = MP_a0; // ADC MIC DATA IN
 /************************ I2S 引脚 基础定义 ************************/
 
 /************************ SPI 引脚 基础定义 ************************/
-constexpr int MP_SPI_SCK       = MP_D5;
+constexpr int MP_SPI_SCL       = MP_D5;
 constexpr int MP_SPI_MISO      = MP_D6;
 constexpr int MP_SPI_MOSI      = MP_D7;
 constexpr int MP_SPI_B0        = MP_D8;
@@ -108,7 +108,7 @@ constexpr int MP_UART_RX_C1    = MP_rx; // S2 S3
 
 
 /************************ SPI IPS TFT 屏幕 ************************/
-constexpr int MP_SPI_DISPLAY_TFT_SCK      = MP_SPI_SCK;   // MP_D5
+constexpr int MP_SPI_DISPLAY_TFT_SCL      = MP_SPI_SCL;   // MP_D5
 constexpr int MP_SPI_DISPLAY_TFT_MISO     = MP_SPI_MISO;  // MP_D6
 constexpr int MP_SPI_DISPLAY_TFT_MOSI     = MP_SPI_MOSI;  // MP_D7
 
@@ -128,29 +128,33 @@ constexpr int MP_SPI_DISPLAY_TFT_BLK_BUSE_C0 = MP_d0;
 /************************ SPI IPS TFT 屏幕 ************************/
 
 
-/************************ SPI OLED 屏幕 ************************/
+/************************ I2C OLED 屏幕 ************************/
 constexpr int MP_I2C_DISPLAY_OLED_SCL     = MP_I2C_SCL;   // MP_D1
 constexpr int MP_I2C_DISPLAY_OLED_SDA     = MP_I2C_SDA;   // MP_D2
+constexpr int MP_I2C_DISPLAY_OLED_K1      = MP_D0;
+constexpr int MP_I2C_DISPLAY_OLED_K2      = MP_D5;
+constexpr int MP_I2C_DISPLAY_OLED_K3      = MP_D7;
+constexpr int MP_I2C_DISPLAY_OLED_K4      = MP_D6;
+constexpr int MP_I2C_DISPLAY_OLED_K5      = MP_D8;
 
-constexpr int MP_I2C_DISPLAY_OLED_K0      = MP_I2C_B0;    // MP_D0
-constexpr int MP_I2C_DISPLAY_OLED_K1      = MP_I2C_X0_A;  // MP_D3
-constexpr int MP_I2C_DISPLAY_OLED_K2      = MP_I2C_X0_B;  // MP_D4
-constexpr int MP_I2C_DISPLAY_OLED_K3      = MP_I2C_B1;    // MP_D8
 
 #if defined(CONFIG_IDF_TARGET_ESP32) || /*ESP32*/\
 (defined(CONFIG_IDF_TARGET_ESP32S2) || defined(ESP32S2)) /*ESP32S2*/ || \
 (defined(CONFIG_IDF_TARGET_ESP32S3) || defined(ESP32S3)) /*ESP32S3*/
-constexpr int MP_I2C_DISPLAY_OLED_K0_C0      = MP_d0;
-constexpr int MP_I2C_DISPLAY_OLED_K1_C0      = MP_d3;
-constexpr int MP_I2C_DISPLAY_OLED_K2_C0      = MP_d4;
-constexpr int MP_I2C_DISPLAY_OLED_K3_C0      = MP_d8;
+constexpr int MP_I2C_DISPLAY_OLED_SCL_C0     = MP_d1;
+constexpr int MP_I2C_DISPLAY_OLED_SDA_C0     = MP_d2;
+constexpr int MP_I2C_DISPLAY_OLED_K1_C0      = MP_d0;
+constexpr int MP_I2C_DISPLAY_OLED_K2_C0      = MP_d5;
+constexpr int MP_I2C_DISPLAY_OLED_K3_C0      = MP_d7;
+constexpr int MP_I2C_DISPLAY_OLED_K4_C0      = MP_d6;
+constexpr int MP_I2C_DISPLAY_OLED_K5_C0      = MP_d8;
 #endif
-/************************ SPI OLED 屏幕 ************************/
+/************************ I2C OLED 屏幕 ************************/
 
 
 /************************ SPI MICRO TF卡 ************************/
 // https://item.taobao.com/item.htm?id=544372000505&skuId=4808243279508
-constexpr int MP_SPI_MICRO_TF_SCK         = MP_SPI_SCK;   // MP_D5
+constexpr int MP_SPI_MICRO_TF_SCK         = MP_SPI_SCL;   // MP_D5
 constexpr int MP_SPI_MICRO_TF_MISO        = MP_SPI_MISO;  // MP_D6
 constexpr int MP_SPI_MICRO_TF_MOSI        = MP_SPI_MOSI;  // MP_D7
 constexpr int MP_SPI_MICRO_TF_CS          = MP_SPI_B0;    // MP_D8
@@ -158,13 +162,41 @@ constexpr int MP_SPI_MICRO_TF_CS          = MP_SPI_B0;    // MP_D8
 
 
 /************************ SPI RF RADIO ************************/
-constexpr int MP_SPI_RF_RADIO_SCK         = MP_SPI_SCK;   // MP_D5
+constexpr int MP_SPI_RF_RADIO_SCK         = MP_SPI_SCL;   // MP_D5
 constexpr int MP_SPI_RF_RADIO_MISO        = MP_SPI_MISO;  // MP_D6
 constexpr int MP_SPI_RF_RADIO_MOSI        = MP_SPI_MOSI;  // MP_D7
-constexpr int MP_SPI_RF_RADIO_CS          = MP_SPI_B0;    // MP_D8
-constexpr int MP_SPI_RF_RADIO_P1          = MP_SPI_X0_A;  // MP_D3
-constexpr int MP_SPI_RF_RADIO_P2          = MP_SPI_X0_B;  // MP_D4
+
+constexpr int MP_SPI_RF_RADIO_A_CS        = MP_D4;
+constexpr int MP_SPI_RF_RADIO_A_P1        = MP_D0; // CE(NRF24L01 443M)   RST(SX1278 LoRa 443M)   GDO0(CC1101) // https://github.com/joelsernamoreno/EvilCrowRF-V2
+constexpr int MP_SPI_RF_RADIO_A_P2        = MP_D8; // IQR(NRF24L01 443M)  DIO0(SX1278 LoRa 443M)  GDO1(CC1101) // https://github.com/fmeng/RollJam-Arduino
+
+constexpr int MP_SPI_RF_RADIO_B_CS        = MP_D3;
+constexpr int MP_SPI_RF_RADIO_B_P1        = MP_D1;
+constexpr int MP_SPI_RF_RADIO_B_P2        = MP_D2;
 /************************ SPI RF RADIO ************************/
+
+
+/************************ SP2 RADIO ************************/
+constexpr int MP_PS2_RF_PS2_CLK           = MP_D2;
+constexpr int MP_PS2_RF_PS2_CS            = MP_D8;
+constexpr int MP_PS2_RF_PS2_CMD           = MP_D6;
+constexpr int MP_PS2_RF_PS2_DAT           = MP_D7;
+
+#if defined(CONFIG_IDF_TARGET_ESP32) || /*ESP32*/\
+    (defined(CONFIG_IDF_TARGET_ESP32S2) || defined(ESP32S2)) /*ESP32S2*/ || \
+    (defined(CONFIG_IDF_TARGET_ESP32S3) || defined(ESP32S3)) /*ESP32S3*/
+constexpr int MP_PS2_RF_PS2_CLK_C0        = MP_d2;
+constexpr int MP_PS2_RF_PS2_CS_C0         = MP_d8;
+constexpr int MP_PS2_RF_PS2_CMD_C0        = MP_d6;
+constexpr int MP_PS2_RF_PS2_DAT_C0        = MP_d7;
+#endif
+/************************ SP2 RADIO ************************/
+
+
+/************************ IR ************************/
+constexpr int MP_IRA           = MP_D6;
+constexpr int MP_IRB           = MP_D8;
+/************************ IR ************************/
 
 
 /************************ 74HC595 SHIELD ************************/

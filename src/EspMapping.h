@@ -1,6 +1,8 @@
 #ifndef ESP_MAPPING_H
 #define ESP_MAPPING_H
 
+#include "esp32_cam.h"
+#include "esp32_s3_cam.h"
 #include "esp8266.h"
 #include "wemos_d1_mini32.h"
 #include "lolin_c3_mini.h"
@@ -57,15 +59,19 @@ constexpr int MP_DAC_SPK_DOUT          = MP_D0; // DAC SPK DATA OUT DAC2
 #if defined(CONFIG_IDF_TARGET_ESP32) || /*ESP32*/\
 (defined(CONFIG_IDF_TARGET_ESP32S2) || defined(ESP32S2)) /*ESP32S2*/ || \
 (defined(CONFIG_IDF_TARGET_ESP32S3) || defined(ESP32S3)) /*ESP32S3*/
+#if !defined(ESP32S3_CAM) && !defined(ESP32_CAM)
 constexpr int MP_I2S_CLK_C0               = MP_d4; // I2S ALL CLK BCLK
 constexpr int MP_I2S_LRC_WS_C0            = MP_d6; // I2S ALL WS LRC LCK
 constexpr int MP_I2S_DATA_SPK_DOUT_C0     = MP_d3; // I2S SPK DATA OUT
 constexpr int MP_I2S_DATA_MIC_DIN_C0      = MP_d8; // I2S MIC DATA IN
 #endif
+#endif
 
 #if (defined(CONFIG_IDF_TARGET_ESP32S2) || defined(ESP32S2)) /*ESP32S2*/ || \
 (defined(CONFIG_IDF_TARGET_ESP32S3) || defined(ESP32S3)) /*ESP32S3*/
+#if !defined(ESP32S3_CAM) && !defined(ESP32_CAM)
 constexpr int MP_ADC_MIC_DIN_C0           = MP_a0; // ADC MIC DATA IN
+#endif
 #endif
 
 /************************ I2S 引脚 基础定义 ************************/
@@ -95,14 +101,18 @@ constexpr int MP_UART_RX_B0    = MP_RX;
 #if defined(CONFIG_IDF_TARGET_ESP32) || /*ESP32*/\
     (defined(CONFIG_IDF_TARGET_ESP32S2) || defined(ESP32S2)) /*ESP32S2*/ || \
     (defined(CONFIG_IDF_TARGET_ESP32S3) || defined(ESP32S3)) /*ESP32S3*/
+#if !defined(ESP32S3_CAM) && !defined(ESP32_CAM)
 constexpr int MP_UART_TX_C0    = MP_d3; // UART BACK TX, BUTTON
 constexpr int MP_UART_RX_C0    = MP_d4; // UART BACK RX, HUM
+#endif
 #endif
 
 #if (defined(CONFIG_IDF_TARGET_ESP32S2) || defined(ESP32S2)) /*ESP32S2*/ || \
     (defined(CONFIG_IDF_TARGET_ESP32S3) || defined(ESP32S3)) /*ESP32S3*/
+#if !defined(ESP32S3_CAM) && !defined(ESP32_CAM)
 constexpr int MP_UART_TX_C1    = MP_tx; // S2 S3
 constexpr int MP_UART_RX_C1    = MP_rx; // S2 S3
+#endif
 #endif
 /************************ UART 引脚 基础定义 ************************/
 
@@ -118,12 +128,14 @@ constexpr int MP_SPI_DISPLAY_TFT_RES      = MP_SPI_X0_B;  // MP_D4
 constexpr int MP_SPI_DISPLAY_TFT_BLK_BUSE = MP_SPI_B1;    // MP_D0
 
 #if defined(CONFIG_IDF_TARGET_ESP32) || /*ESP32*/\
-(defined(CONFIG_IDF_TARGET_ESP32S2) || defined(ESP32S2)) /*ESP32S2*/ || \
-(defined(CONFIG_IDF_TARGET_ESP32S3) || defined(ESP32S3)) /*ESP32S3*/
+    (defined(CONFIG_IDF_TARGET_ESP32S2) || defined(ESP32S2)) /*ESP32S2*/ || \
+    (defined(CONFIG_IDF_TARGET_ESP32S3) || defined(ESP32S3)) /*ESP32S3*/
+#if !defined(ESP32S3_CAM) && !defined(ESP32_CAM)
 constexpr int MP_SPI_DISPLAY_TFT_CS_C0       = MP_d8;
 constexpr int MP_SPI_DISPLAY_TFT_DC_C0       = MP_d3;
 constexpr int MP_SPI_DISPLAY_TFT_RES_C0      = MP_d4;
 constexpr int MP_SPI_DISPLAY_TFT_BLK_BUSE_C0 = MP_d0;
+#endif
 #endif
 /************************ SPI IPS TFT 屏幕 ************************/
 
@@ -141,6 +153,7 @@ constexpr int MP_I2C_DISPLAY_OLED_K5      = MP_D8;
 #if defined(CONFIG_IDF_TARGET_ESP32) || /*ESP32*/\
 (defined(CONFIG_IDF_TARGET_ESP32S2) || defined(ESP32S2)) /*ESP32S2*/ || \
 (defined(CONFIG_IDF_TARGET_ESP32S3) || defined(ESP32S3)) /*ESP32S3*/
+#if !defined(ESP32S3_CAM) && !defined(ESP32_CAM)
 constexpr int MP_I2C_DISPLAY_OLED_SCL_C0     = MP_d1;
 constexpr int MP_I2C_DISPLAY_OLED_SDA_C0     = MP_d2;
 constexpr int MP_I2C_DISPLAY_OLED_K1_C0      = MP_d0;
@@ -148,6 +161,7 @@ constexpr int MP_I2C_DISPLAY_OLED_K2_C0      = MP_d5;
 constexpr int MP_I2C_DISPLAY_OLED_K3_C0      = MP_d7;
 constexpr int MP_I2C_DISPLAY_OLED_K4_C0      = MP_d6;
 constexpr int MP_I2C_DISPLAY_OLED_K5_C0      = MP_d8;
+#endif
 #endif
 /************************ I2C OLED 屏幕 ************************/
 
@@ -185,11 +199,14 @@ constexpr int MP_PS2_RF_PS2_DAT           = MP_D7;
 #if defined(CONFIG_IDF_TARGET_ESP32) || /*ESP32*/\
     (defined(CONFIG_IDF_TARGET_ESP32S2) || defined(ESP32S2)) /*ESP32S2*/ || \
     (defined(CONFIG_IDF_TARGET_ESP32S3) || defined(ESP32S3)) /*ESP32S3*/
+#if !defined(ESP32S3_CAM) && !defined(ESP32_CAM)
 constexpr int MP_PS2_RF_PS2_CLK_C0        = MP_d2;
 constexpr int MP_PS2_RF_PS2_CS_C0         = MP_d8;
 constexpr int MP_PS2_RF_PS2_CMD_C0        = MP_d6;
 constexpr int MP_PS2_RF_PS2_DAT_C0        = MP_d7;
 #endif
+#endif
+
 /************************ SP2 RADIO ************************/
 
 
@@ -207,10 +224,13 @@ constexpr int MP_74HC595_SCLK        = MP_D3;
 #if defined(CONFIG_IDF_TARGET_ESP32) || /*ESP32*/\
     (defined(CONFIG_IDF_TARGET_ESP32S2) || defined(ESP32S2)) /*ESP32S2*/ || \
     (defined(CONFIG_IDF_TARGET_ESP32S3) || defined(ESP32S3)) /*ESP32S3*/
+#if !defined(ESP32S3_CAM) && !defined(ESP32_CAM)
 constexpr int MP_74HC595_SOUT_C0      = MP_d1;
 constexpr int MP_74HC595_LATCH_C0     = MP_d2;
 constexpr int MP_74HC595_SCLK_C0      = MP_d3;
 #endif
+#endif
+
 /************************ 74HC595 SHIELD ************************/
 
 
@@ -222,10 +242,13 @@ constexpr int MP_74HC165_SCLK        = MP_D8;
 #if defined(CONFIG_IDF_TARGET_ESP32) || /*ESP32*/\
     (defined(CONFIG_IDF_TARGET_ESP32S2) || defined(ESP32S2)) /*ESP32S2*/ || \
     (defined(CONFIG_IDF_TARGET_ESP32S3) || defined(ESP32S3)) /*ESP32S3*/
+#if !defined(ESP32S3_CAM) && !defined(ESP32_CAM)
 constexpr int MP_74HC165_LATCH_C0     = MP_d6;
 constexpr int MP_74HC165_SIN_C0       = MP_d7;
 constexpr int MP_74HC165_SCLK_C0      = MP_d8;
 #endif
+#endif
+
 /************************ 74HC165 SHIELD ************************/
 
 // @formatter:on

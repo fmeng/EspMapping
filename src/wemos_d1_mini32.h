@@ -11,7 +11,9 @@
  */
 #ifndef ESP_MAPPING_WEMOS_D1_MINI32_H
 #define ESP_MAPPING_WEMOS_D1_MINI32_H
-#if defined(CONFIG_IDF_TARGET_ESP32)
+
+#if defined(CONFIG_IDF_TARGET_ESP32) && !defined(ESP32_CAM) && !defined(ESP32_NORMAL)
+#define ESP32_NORMAL
 
 // @formatter:off
 

@@ -15,7 +15,8 @@
  */
 #ifndef ESP_MAPPING_LOLIN_S3_MINI_H
 #define ESP_MAPPING_LOLIN_S3_MINI_H
-#if defined(CONFIG_IDF_TARGET_ESP32S3) || defined(ESP32S3)
+#if (defined(CONFIG_IDF_TARGET_ESP32S3) || defined(ESP32S3)) && !defined(ESP32S3_CAM) && !defined(ESP32S3_NORMAL)
+#define ESP32S3_NORMAL
 
 // @formatter:off
 
